@@ -26,3 +26,7 @@ extension UIView {
         }
     }
 }
+
+@IBDesignable class DesignableView: UIView {}
+
+@IBDesignable class DesignableImageView: UIImageView {}
