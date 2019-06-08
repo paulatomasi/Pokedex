@@ -20,6 +20,16 @@ struct Pokemon: Codable {
 }
 
 extension Pokemon: CustomStringConvertible {
+    var displayId: String {
+        let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
+        
+        return "#\(idWithZeros)"
+    }
+    
+    var capitalizedName: String {
+        return name.capitalized
+    }
+    
     var description: String {
         return "\n\(self.name), com os tipos \(self.types)"
     }
