@@ -13,6 +13,7 @@ class RequestMaker {
     enum Endpoint {
         case list
         case details(query: String)
+        case moves
         
         var url: String {
             switch self {
@@ -20,11 +21,13 @@ class RequestMaker {
                 return "list"
             case let .details(query):
                 return "details/\(query)"
+            case .moves:
+                return "moves"
             }
         }
     }
     
-    let baseURl = "http://localhost:3000/"
+    let baseURl = "http://localhost:1234/"
     let session = URLSession.shared
     
     typealias CompletionCallBack<T: Decodable> = (T) -> Void
@@ -56,11 +59,8 @@ class RequestMaker {
             } catch let error {
                 print(error)
             }
-            
-            //print(String(data: data, encoding: .utf8)!)
         }
         
         dataTask.resume()
-        
     }
 }

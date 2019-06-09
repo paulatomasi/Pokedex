@@ -278,19 +278,75 @@ CQ
         <!--Moves-->
         <scene sceneID="Mo9-3I-Jue">
             <objects>
-                <viewController id="Kmy-9W-3Cr" sceneMemberID="viewController">
+                <viewController id="Kmy-9W-3Cr" customClass="MovesListViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IEG-WS-Vdn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qGG-rU-063">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="move" rowHeight="75" id="Ypn-fg-xeF" customClass="MoveTableViewCell" customModule="Pokedex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ypn-fg-xeF" id="jQb-ae-XY3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movename" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HS9-Bd-JHg">
+                                                    <rect key="frame" x="21" y="24.333333333333329" width="96" height="26"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
+                                                    <color key="textColor" name="dark-grey"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bug" translatesAutoresizingMaskIntoConstraints="NO" id="ZSL-pt-k4L" customClass="DesignableImageView" customModule="Pokedex" customModuleProvider="target">
+                                                    <rect key="frame" x="330" y="22.333333333333329" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="bnw-fz-Psd"/>
+                                                        <constraint firstAttribute="height" constant="30" id="oZc-A2-6Re"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZSL-pt-k4L" firstAttribute="centerY" secondItem="jQb-ae-XY3" secondAttribute="centerY" id="BKK-N8-hM4"/>
+                                                <constraint firstItem="HS9-Bd-JHg" firstAttribute="leading" secondItem="jQb-ae-XY3" secondAttribute="leading" constant="21" id="WDz-Zp-VLd"/>
+                                                <constraint firstItem="HS9-Bd-JHg" firstAttribute="centerY" secondItem="jQb-ae-XY3" secondAttribute="centerY" id="p2s-Ro-rlO"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZSL-pt-k4L" secondAttribute="trailing" constant="15" id="xom-aQ-BrX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="HS9-Bd-JHg" id="d5Y-qu-s3X"/>
+                                            <outlet property="typeImageView" destination="ZSL-pt-k4L" id="s3O-QE-h2c"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qGG-rU-063" firstAttribute="top" secondItem="uWX-Nx-xOO" secondAttribute="top" id="DM9-iO-LHw"/>
+                            <constraint firstItem="qGG-rU-063" firstAttribute="leading" secondItem="uWX-Nx-xOO" secondAttribute="leading" id="Xf3-wt-kVH"/>
+                            <constraint firstItem="uWX-Nx-xOO" firstAttribute="bottom" secondItem="qGG-rU-063" secondAttribute="bottom" id="bPJ-la-yRV"/>
+                            <constraint firstItem="uWX-Nx-xOO" firstAttribute="trailing" secondItem="qGG-rU-063" secondAttribute="trailing" id="zOz-W9-ubN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uWX-Nx-xOO"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Moves" image="moves" id="tOJ-En-8Lm"/>
                     <navigationItem key="navigationItem" title="Moves" id="8Us-lv-2Hc"/>
+                    <connections>
+                        <outlet property="tableView" destination="qGG-rU-063" id="J1Q-ke-h9e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvQ-ic-SEO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="1507"/>
+            <point key="canvasLocation" x="856.79999999999995" y="1506.6502463054187"/>
         </scene>
         <!--Item-->
         <scene sceneID="qQA-D3-esM">
@@ -309,10 +365,10 @@ CQ
             </objects>
             <point key="canvasLocation" x="857" y="780"/>
         </scene>
-        <!--Itens-->
+        <!--Items-->
         <scene sceneID="YQP-cc-c62">
             <objects>
-                <viewController id="GfT-7D-ZcO" sceneMemberID="viewController">
+                <viewController id="GfT-7D-ZcO" customClass="ItemsListViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kqg-AW-Wor">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,7 +376,7 @@ CQ
                         <viewLayoutGuide key="safeArea" id="cix-dg-Wle"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Items" image="items" id="LjZ-tf-zaR"/>
-                    <navigationItem key="navigationItem" title="Itens" id="H3Y-HI-cLz"/>
+                    <navigationItem key="navigationItem" title="Items" id="H3Y-HI-cLz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vgd-vQ-OUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
