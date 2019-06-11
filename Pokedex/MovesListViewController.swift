@@ -30,14 +30,14 @@ class MovesListViewController: UIViewController {
 }
 
 extension MovesListViewController: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let storyboard = self.storyboard
-//        if let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") {
-//            self.navigationController?.present(detailViewController, animated: true)
-//        }
-//
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let storyboard = self.storyboard
+        if let moveDetailViewController = storyboard?.instantiateViewController(withIdentifier: "MoveDetailViewController") {
+            self.navigationController?.present(moveDetailViewController, animated: true)
+        }
+
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75

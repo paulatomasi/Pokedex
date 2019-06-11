@@ -13,3 +13,15 @@ struct Move: Codable {
     let learnLevel: Int
     let type: PokemonType
 }
+
+extension Move: CustomStringConvertible {
+    var displayName: String {
+        let formattedName = name.replacingOccurrences(of: "-", with: " ")
+        
+        return formattedName.capitalized
+    }
+    
+    var description: String {
+        return "\(displayName): level \(learnLevel) | type \(type)"
+    }
+}

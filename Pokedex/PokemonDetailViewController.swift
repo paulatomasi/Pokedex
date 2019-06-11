@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  pokemonDetailViewController.swift
 //  Pokedex
 //
 //  Created by Paula Tomasi Andrade on 08/06/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class PokemonDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UITableViewDelegate {
+extension PokemonDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             return tableView.dequeueReusableCell(withIdentifier: "header")
@@ -48,7 +48,7 @@ extension DetailViewController: UITableViewDelegate {
     }
 }
 
-extension DetailViewController: UITableViewDataSource {
+extension PokemonDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2

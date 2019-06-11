@@ -14,8 +14,7 @@ class MoveTableViewCell: UITableViewCell {
     @IBOutlet weak var typeImageView: UIImageView!
     
     func config(with model: Move) {
-        // TODO: Fix move name
-        nameLabel.text = model.name
+        nameLabel.text = model.displayName
 
         typeImageView.image = model.type.icon
         typeImageView.backgroundColor = model.type.color

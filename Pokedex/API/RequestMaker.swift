@@ -27,7 +27,7 @@ class RequestMaker {
         }
     }
     
-    let baseURl = "http://localhost:1234/"
+    let baseURl = "http://localhost:3000/"
     let session = URLSession.shared
     
     typealias CompletionCallBack<T: Decodable> = (T) -> Void

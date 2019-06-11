@@ -125,10 +125,10 @@ CQ
             </objects>
             <point key="canvasLocation" x="2624.8000000000002" y="34.729064039408868"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Pokemon Detail View Controller-->
         <scene sceneID="rSu-1H-J0v">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="foZ-BS-ux8" customClass="DetailViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PokemonDetailViewController" id="foZ-BS-ux8" customClass="PokemonDetailViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H2W-H5-5hO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +252,22 @@ CQ
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ni9-ou-15j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3625" y="35"/>
+            <point key="canvasLocation" x="3903" y="35"/>
+        </scene>
+        <!--Move Detail View Controller-->
+        <scene sceneID="UOb-u4-d5U">
+            <objects>
+                <viewController storyboardIdentifier="MoveDetailViewController" id="ByM-fG-m8d" customClass="MoveDetailViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6BR-dO-FqY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="bug"/>
+                        <viewLayoutGuide key="safeArea" id="cK7-as-C79"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kGd-f2-VXH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3902" y="780"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CYm-3i-5lq">
@@ -423,6 +438,9 @@ CQ
         <image name="items" width="28" height="28"/>
         <image name="moves" width="26" height="26"/>
         <image name="pikashadow" width="28" height="28"/>
+        <namedColor name="bug">
+            <color red="0.61599999666213989" green="0.75700002908706665" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dark-grey">
             <color red="0.30980392156862746" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
