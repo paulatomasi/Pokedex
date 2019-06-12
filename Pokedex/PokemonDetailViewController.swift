@@ -19,6 +19,7 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet weak var pokemonImageViewCenterVerticallyConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewTopVerticallyConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var pokemonTypeView: PokemonTypeView!
     
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -30,6 +31,10 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.initialConfig()
+        
+        if let type = self.pokemon?.types.first {
+            self.pokemonTypeView.config(type: type)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

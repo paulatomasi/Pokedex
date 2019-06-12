@@ -53,7 +53,7 @@ CQ
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-J1-Rcd">
-                                                    <rect key="frame" x="295" y="22.333333333333329" width="70" height="30"/>
+                                                    <rect key="frame" x="334" y="22.333333333333329" width="70" height="30"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fairy" translatesAutoresizingMaskIntoConstraints="NO" id="G0b-Ib-kmA" customClass="DesignableImageView" customModule="Pokedex" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -172,6 +172,16 @@ CQ
                                             <action selector="dismissAction:" destination="foZ-BS-ux8" eventType="touchUpInside" id="jvn-ed-EeN"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yes-dx-I63" customClass="PokemonTypeView" customModule="Pokedex" customModuleProvider="target">
+                                        <rect key="frame" x="87" y="496" width="110" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -202,6 +212,7 @@ CQ
                         <outlet property="pokemonImageViewHeightConstraint" destination="Agw-N3-zZU" id="G2q-od-Z19"/>
                         <outlet property="pokemonImageViewTopVerticallyConstraint" destination="aRO-W6-Hjy" id="qHA-wl-VLa"/>
                         <outlet property="pokemonImageViewWidthConstraint" destination="UEQ-KO-xxc" id="Qer-93-MW1"/>
+                        <outlet property="pokemonTypeView" destination="Yes-dx-I63" id="TYE-F7-hzn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ni9-ou-15j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,7 +287,7 @@ CQ
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bug" translatesAutoresizingMaskIntoConstraints="NO" id="ZSL-pt-k4L" customClass="DesignableImageView" customModule="Pokedex" customModuleProvider="target">
-                                                    <rect key="frame" x="330" y="22.333333333333329" width="30" height="30"/>
+                                                    <rect key="frame" x="369" y="22.333333333333329" width="30" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="bnw-fz-Psd"/>
