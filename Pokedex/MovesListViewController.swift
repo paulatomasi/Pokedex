@@ -64,7 +64,6 @@ extension MovesListViewController {
     func fetchData() {
         requestMaker.make(withEndpoint: .moves) {
             (moveList: [Move]) in
-             print(moveList)
             self.moveList = moveList
             
             DispatchQueue.main.async {

@@ -17,20 +17,20 @@ struct Pokemon: Codable {
     let name: String
     let image: String
     let types: [PokemonType]
-}
-
-extension Pokemon: CustomStringConvertible {
+    let description: String?
+    let stats: [Status]?
+    
     var displayId: String {
         let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
-        
         return "#\(idWithZeros)"
     }
     
     var capitalizedName: String {
         return name.capitalized
     }
-    
-    var description: String {
-        return "\n\(self.name), com os tipos \(self.types)"
-    }
+}
+
+struct Status: Codable {
+    let name: String
+    let value: Int
 }

@@ -7,62 +7,80 @@
 //
 
 import UIKit
+import Nuke
 
 class PokemonDetailViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var gradientView: GradientView!
+    @IBOutlet weak var pokemonImageView: UIImageView!
+    
+    @IBOutlet weak var pokemonImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonImageViewCenterVerticallyConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonImageViewTopVerticallyConstraint: NSLayoutConstraint!
+    
+    
+    @IBAction func dismissAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    var pokemon: Pokemon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @IBAction func goBack(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension PokemonDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            return tableView.dequeueReusableCell(withIdentifier: "header")
-        }
         
-        return nil
+        self.initialConfig()
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 48
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        return 0
+        self.requestPokemon()
+        self.loadPokemonAnimation()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 130
-        } else {
-            return 1500
+    func loadPokemonAnimation() {
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.pokemonImageView.alpha = 0.2
+        })
+    }
+    
+    func requestPokemon() {
+        if let pokemon = self.pokemon {
+            let requestMaker = RequestMaker()
+            requestMaker.make(withEndpoint: .details(query: pokemon.id)) {
+                (pokemon: Pokemon) in
+                self.pokemon = pokemon
+                self.animatePokemonToTop()
+            }
+        }
+    }
+    
+    func animatePokemonToTop() {
+        DispatchQueue.main.async {
+            self.pokemonImageView.layer.removeAllAnimations()
             
+            self.pokemonImageViewWidthConstraint.constant = 80
+            self.pokemonImageViewHeightConstraint.constant = 80
+        
+            self.pokemonImageViewCenterVerticallyConstraint.priority = UILayoutPriority(rawValue: 900)
+            self.pokemonImageViewTopVerticallyConstraint.priority = UILayoutPriority(rawValue: 999)
+            
+            UIView.animate(withDuration: 1, animations: {
+                self.pokemonImageView.alpha = 1
+                self.view.layoutIfNeeded()
+            })
         }
     }
-}
-
-extension PokemonDetailViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: "empty-space", for: indexPath)
-        } else {
-            return tableView.dequeueReusableCell(withIdentifier: "content", for: indexPath)
+    func initialConfig() {
+        if let pokemon = self.pokemon {
+            let pokemonColor = pokemon.types.first?.color
+            
+            self.gradientView.startColor = pokemonColor ?? .black
+            self.gradientView.endColor = pokemonColor?.lighter() ?? .white
+            
+            self.pokemonImageView.loadImage(from: pokemon.image)
         }
     }
 }
