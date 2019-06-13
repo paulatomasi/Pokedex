@@ -33,7 +33,7 @@ class PokemonDetailViewController: UIViewController {
         self.initialConfig()
         
         if let type = self.pokemon?.types.first {
-            self.pokemonTypeView.config(type: type)
+            self.pokemonTypeView.config(type: type, asMiniType: false)
         }
     }
     

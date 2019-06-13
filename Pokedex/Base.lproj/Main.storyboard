@@ -55,33 +55,22 @@ CQ
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-J1-Rcd">
                                                     <rect key="frame" x="334" y="22.333333333333329" width="70" height="30"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fairy" translatesAutoresizingMaskIntoConstraints="NO" id="G0b-Ib-kmA" customClass="DesignableImageView" customModule="Pokedex" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRg-7J-pjV" customClass="PokemonTypeView" customModule="Pokedex" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="3ut-DV-WXZ"/>
-                                                                <constraint firstAttribute="width" constant="30" id="YQe-lZ-lVe"/>
+                                                                <constraint firstAttribute="height" constant="30" id="hlt-Hx-dBo"/>
+                                                                <constraint firstAttribute="width" constant="30" id="oCN-A0-PuK"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="15"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bug" translatesAutoresizingMaskIntoConstraints="NO" id="zrM-mm-d8k" customClass="DesignableImageView" customModule="Pokedex" customModuleProvider="target">
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydQ-cK-nn0" customClass="PokemonTypeView" customModule="Pokedex" customModuleProvider="target">
                                                             <rect key="frame" x="40" y="0.0" width="30" height="30"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="CVx-F0-HLx"/>
-                                                                <constraint firstAttribute="height" constant="30" id="NKL-XZ-bef"/>
+                                                                <constraint firstAttribute="height" constant="30" id="UXO-ds-xjr"/>
+                                                                <constraint firstAttribute="width" constant="30" id="lsn-BP-D84"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="15"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -100,8 +89,8 @@ CQ
                                             <outlet property="idLabel" destination="bXw-RU-VVV" id="ldu-BX-4bd"/>
                                             <outlet property="nameLabel" destination="yVP-O9-qVL" id="Ce4-Az-eeT"/>
                                             <outlet property="pictureImageView" destination="HtQ-za-1b0" id="snx-0J-ZZO"/>
-                                            <outlet property="primaryTypeImageView" destination="G0b-Ib-kmA" id="tA5-TT-wRT"/>
-                                            <outlet property="secondaryTypeImageView" destination="zrM-mm-d8k" id="e09-wu-XVc"/>
+                                            <outlet property="primaryPokemonTypeView" destination="jRg-7J-pjV" id="UcJ-mN-KO7"/>
+                                            <outlet property="secondaryPokemonTypeView" destination="ydQ-cK-nn0" id="MVu-SA-V6b"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -406,7 +395,6 @@ CQ
     <resources>
         <image name="back" width="21" height="12"/>
         <image name="ic_bug" width="14" height="17"/>
-        <image name="ic_fairy" width="15" height="15"/>
         <image name="items" width="28" height="28"/>
         <image name="moves" width="26" height="26"/>
         <image name="pikashadow" width="28" height="28"/>

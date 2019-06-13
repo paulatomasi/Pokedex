@@ -13,24 +13,21 @@ class PokemonTableViewCell: UITableViewCell {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
-    @IBOutlet weak var primaryTypeImageView: UIImageView!
-    @IBOutlet weak var secondaryTypeImageView: UIImageView!
-    
+    @IBOutlet weak var primaryPokemonTypeView: PokemonTypeView!
+    @IBOutlet weak var secondaryPokemonTypeView: PokemonTypeView!
     
     func config(with model: Pokemon) {
         pictureImageView.loadImage(from: model.image)
         nameLabel.text = model.capitalizedName
         idLabel.text = model.displayId
-        primaryTypeImageView.image = model.types.first?.icon
-        primaryTypeImageView.backgroundColor = model.types.first?.color
+
+        primaryPokemonTypeView.config(type: model.types.first!, asMiniType: true)
         
         if model.types.count > 1 {
-            secondaryTypeImageView.isHidden = false
-            secondaryTypeImageView.image = model.types[1].icon
-            secondaryTypeImageView.backgroundColor = model.types[1].color
+            secondaryPokemonTypeView.isHidden = false
+            secondaryPokemonTypeView.config(type: model.types[1], asMiniType: true)
         } else {
-            secondaryTypeImageView.isHidden = true
-            secondaryTypeImageView.backgroundColor = .clear
+            secondaryPokemonTypeView.isHidden = true
         }
     }
 }

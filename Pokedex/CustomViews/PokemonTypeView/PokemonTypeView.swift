@@ -33,9 +33,14 @@ class PokemonTypeView: UIView {
         contentView.fixInView(self)
     }
     
-    func config(type: PokemonType) {
+    func config(type: PokemonType, asMiniType isMiniType: Bool) {
         self.contentView.backgroundColor = type.color
         self.typeImageView.image = type.icon
-        self.typeLabel.text = type.rawValue.uppercased()
+        
+        if isMiniType {
+            self.typeLabel.text = nil
+        } else {
+            self.typeLabel.text = type.rawValue.uppercased()
+        }
     }
 }
