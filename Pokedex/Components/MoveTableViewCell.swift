@@ -11,13 +11,12 @@ import UIKit
 class MoveTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var typeImageView: UIImageView!
+    @IBOutlet weak var pokemonTipeView: PokemonTypeView!
     
     func config(with model: Move) {
-        nameLabel.text = model.displayName
+        self.nameLabel.text = model.displayName
 
-        typeImageView.image = model.type.icon
-        typeImageView.backgroundColor = model.type.color
+        self.pokemonTipeView.config(type: model.type, asMiniType: true)
     }
 }
 
