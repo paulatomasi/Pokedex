@@ -32,6 +32,10 @@ struct Pokemon: Codable {
     var capitalizedName: String {
         return name.capitalized
     }
+    
+    var descriptionText: String {
+        return description?.replacingOccurrences(of: "\n", with: " ") ?? ""
+    }
 }
 
 struct Status: Codable {
