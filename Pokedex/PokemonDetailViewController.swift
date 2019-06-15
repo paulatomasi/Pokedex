@@ -11,19 +11,24 @@ import Nuke
 
 class PokemonDetailViewController: UIViewController {
     
-    @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var pokemonImageView: UIImageView!
-    
     @IBOutlet weak var pokemonImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewCenterVerticallyConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewTopVerticallyConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonDetailViewFinalPositionConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonDetailViewInitialPositionConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pokemonTypesStackView: NSLayoutConstraint!
+    
+    @IBOutlet weak var gradientView: GradientView!
+    @IBOutlet weak var pokemonImageView: UIImageView!
     
     @IBOutlet weak var primaryPokemonTypeView: PokemonTypeView!
     @IBOutlet weak var secondPokemonTypeView: PokemonTypeView!
     
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var pokemonDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var pokemonStatsLabel: UILabel!
     
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -33,6 +38,7 @@ class PokemonDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "detailView"
         
         self.initialConfig()
     }
@@ -56,6 +62,7 @@ class PokemonDetailViewController: UIViewController {
             requestMaker.make(withEndpoint: .details(query: pokemon.id)) {
                 (pokemon: Pokemon) in
                 self.pokemon = pokemon
+                self.loadDetails()
                 self.animatePokemonToTop()
             }
         }
@@ -65,12 +72,15 @@ class PokemonDetailViewController: UIViewController {
         DispatchQueue.main.async {
             self.pokemonImageView.layer.removeAllAnimations()
             
-            self.pokemonImageViewWidthConstraint.constant = 80
-            self.pokemonImageViewHeightConstraint.constant = 80
-        
+            self.pokemonImageViewWidthConstraint.constant = 100
+            self.pokemonImageViewHeightConstraint.constant = 100
+            
             self.pokemonImageViewCenterVerticallyConstraint.priority = UILayoutPriority(rawValue: 900)
             self.pokemonImageViewTopVerticallyConstraint.priority = UILayoutPriority(rawValue: 999)
             
+            self.pokemonDetailViewInitialPositionConstraint.priority = UILayoutPriority(rawValue: 900)
+            self.pokemonDetailViewFinalPositionConstraint.priority = UILayoutPriority(rawValue: 999)
+
             UIView.animate(withDuration: 1, animations: {
                 self.pokemonImageView.alpha = 1
                 self.view.layoutIfNeeded()
@@ -90,7 +100,6 @@ class PokemonDetailViewController: UIViewController {
                 
                 self.primaryPokemonTypeView.config(type: primaryType, asMiniType: false)
             }
-
             
             if pokemon.types.count > 1{
                 let secondType = pokemon.types[1]
@@ -98,10 +107,19 @@ class PokemonDetailViewController: UIViewController {
                 self.secondPokemonTypeView.config(type: secondType, asMiniType: false)
             } else {
                 self.secondPokemonTypeView.isHidden = true
+                self.pokemonTypesStackView.constant = 95
             }
             
             self.pokemonNameLabel.text = pokemon.capitalizedName
-            self.pokemonDescriptionLabel.text = pokemon.description
+            self.pokemonStatsLabel.textColor = pokemon.types.first?.color
+        }
+    }
+    
+    func loadDetails() {
+        DispatchQueue.main.async {
+            if let pokemon = self.pokemon {
+                self.pokemonDescriptionLabel.text = pokemon.descriptionText
+            }
         }
     }
 }
