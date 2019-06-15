@@ -10,6 +10,8 @@ import Foundation
 
 class RequestMaker {
     
+    static let decoder = JSONDecoder()
+    
     enum Endpoint {
         case list
         case details(query: String)
@@ -52,7 +54,7 @@ class RequestMaker {
             }
             
             do {
-                let decodedObject = try JSONDecoder().decode(T.self, from: data)
+                let decodedObject = try RequestMaker.decoder.decode(T.self, from: data)
                 
                 completion(decodedObject)
                 

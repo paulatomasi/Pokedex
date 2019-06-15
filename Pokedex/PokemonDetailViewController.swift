@@ -19,7 +19,11 @@ class PokemonDetailViewController: UIViewController {
     @IBOutlet weak var pokemonImageViewCenterVerticallyConstraint: NSLayoutConstraint!
     @IBOutlet weak var pokemonImageViewTopVerticallyConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var pokemonTypeView: PokemonTypeView!
+    @IBOutlet weak var primaryPokemonTypeView: PokemonTypeView!
+    @IBOutlet weak var secondPokemonTypeView: PokemonTypeView!
+    
+    @IBOutlet weak var pokemonNameLabel: UILabel!
+    @IBOutlet weak var pokemonDescriptionLabel: UILabel!
     
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -31,10 +35,6 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.initialConfig()
-        
-        if let type = self.pokemon?.types.first {
-            self.pokemonTypeView.config(type: type, asMiniType: false)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,12 +80,28 @@ class PokemonDetailViewController: UIViewController {
     
     func initialConfig() {
         if let pokemon = self.pokemon {
-            let pokemonColor = pokemon.types.first?.color
-            
-            self.gradientView.startColor = pokemonColor ?? .black
-            self.gradientView.endColor = pokemonColor?.lighter() ?? .white
-            
             self.pokemonImageView.loadImage(from: pokemon.image)
+            
+            if let primaryType = pokemon.types.first {
+                let pokemonColor = primaryType.color
+                
+                self.gradientView.startColor = pokemonColor ?? .black
+                self.gradientView.endColor = pokemonColor?.lighter() ?? .white
+                
+                self.primaryPokemonTypeView.config(type: primaryType, asMiniType: false)
+            }
+
+            
+            if pokemon.types.count > 1{
+                let secondType = pokemon.types[1]
+                
+                self.secondPokemonTypeView.config(type: secondType, asMiniType: false)
+            } else {
+                self.secondPokemonTypeView.isHidden = true
+            }
+            
+            self.pokemonNameLabel.text = pokemon.capitalizedName
+            self.pokemonDescriptionLabel.text = pokemon.description
         }
     }
 }
