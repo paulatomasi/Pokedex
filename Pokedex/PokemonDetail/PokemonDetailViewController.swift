@@ -21,14 +21,14 @@ class PokemonDetailViewController: UIViewController {
     
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var pokemonImageView: UIImageView!
-    
     @IBOutlet weak var primaryPokemonTypeView: PokemonTypeView!
     @IBOutlet weak var secondPokemonTypeView: PokemonTypeView!
     
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var pokemonDescriptionLabel: UILabel!
-    
     @IBOutlet weak var pokemonStatsLabel: UILabel!
+    
+    private let presenter = PokemonDetailPresenter()
     
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -40,6 +40,7 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         view.accessibilityIdentifier = "detailView"
         
+        self.presenter.view = self
         self.initialConfig()
     }
     
@@ -58,13 +59,7 @@ class PokemonDetailViewController: UIViewController {
     
     func requestPokemon() {
         if let pokemon = self.pokemon {
-            let requestMaker = RequestMaker()
-            requestMaker.make(withEndpoint: .details(query: pokemon.id)) {
-                (pokemon: Pokemon) in
-                self.pokemon = pokemon
-                self.loadDetails()
-                self.animatePokemonToTop()
-            }
+            self.presenter.fetchData(pokemon: pokemon)
         }
     }
     
@@ -121,5 +116,12 @@ class PokemonDetailViewController: UIViewController {
                 self.pokemonDescriptionLabel.text = pokemon.descriptionText
             }
         }
+    }
+}
+
+extension PokemonDetailViewController: PokemonDetailViewType {
+    func reloadData() {
+        self.loadDetails()
+        self.animatePokemonToTop()
     }
 }
