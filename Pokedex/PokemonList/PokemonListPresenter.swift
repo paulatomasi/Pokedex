@@ -59,10 +59,7 @@ extension PokemonListPresenter {
 extension PokemonListPresenter: PokemonListInteractorOutput {
     func dataFetched(_ data: PokemonList) {
         self.pokemonList = data.pokemons
-        
-        DispatchQueue.main.async {
-            self.view?.reloadData()
-        }
+        self.view?.reloadData()
     }
 }
 

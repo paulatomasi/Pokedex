@@ -22,7 +22,7 @@ struct Pokemon: Codable {
     let image: String
     let types: [PokemonType]
     let description: String?
-    let stats: [Status]?
+    let stats: [Stats]?
     
     var displayId: String {
         let idWithZeros = id.leftPadding(toLength: 3, withPad: "0")
@@ -36,9 +36,17 @@ struct Pokemon: Codable {
     var descriptionText: String {
         return description?.replacingOccurrences(of: "\n", with: " ") ?? ""
     }
+    
+    var mainType: PokemonType? {
+        return self.types.first
+    }
+    
+    var strongestStatus: Stats? {
+        return self.stats?.first
+    }
 }
 
-struct Status: Codable {
+struct Stats: Codable {
     let name: String
     let value: Int
 }

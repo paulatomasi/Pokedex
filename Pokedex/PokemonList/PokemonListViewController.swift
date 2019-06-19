@@ -31,8 +31,10 @@ class PokemonListViewController: UIViewController {
 
 extension PokemonListViewController: PokemonListViewType {
     func reloadData() {
-        self.activityController.isHidden = true
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.activityController.isHidden = true
+            self.tableView.reloadData()
+        }
     }
 }
 
